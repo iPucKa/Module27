@@ -3,7 +3,7 @@ using UnityEngine;
 public class Example : MonoBehaviour
 {
 	private EnemyService _enemyService;
-	private Enemy _enemy;
+	private DestroyCondition _destroyCondition;
 
 	private void Awake()
 	{
@@ -12,27 +12,29 @@ public class Example : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log("Число врагов: " + _enemyService.Count);
-
 		_enemyService.Update(Time.deltaTime);
+		Debug.Log("Количество врагов: " + _enemyService.EnemiesCount);
 
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			Enemy enemy = new Enemy(DestroyTypeCondition.IsDead);
+			_destroyCondition = new DestroyCondition(DestroyType.IsDead);
+			Enemy enemy = new Enemy(_destroyCondition);
 
 			_enemyService.Add(enemy);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			Enemy enemy = new Enemy(DestroyTypeCondition.TimeIsOver);
+			_destroyCondition = new DestroyCondition(DestroyType.TimeIsOver);
+			Enemy enemy = new Enemy(_destroyCondition);
 
 			_enemyService.Add(enemy);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
-			Enemy enemy = new Enemy(DestroyTypeCondition.MaxCount);
+			_destroyCondition = new DestroyCondition(DestroyType.MaxCount);
+			Enemy enemy = new Enemy(_destroyCondition);
 
 			_enemyService.Add(enemy);
 		}

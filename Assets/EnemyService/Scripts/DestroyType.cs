@@ -1,4 +1,4 @@
-public enum DestroyTypeCondition
+public enum DestroyType
 {
     IsDead,
     TimeIsOver,
