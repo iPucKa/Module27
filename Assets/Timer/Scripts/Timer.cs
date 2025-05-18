@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Timer : IPause
+public class Timer
 {
 	public event Action<float> ValueChanged;
 	public event Action<bool> Started;
@@ -10,7 +10,6 @@ public class Timer : IPause
 
 	private MonoBehaviour _coroutineRunner;
 
-	//private float _maxTime;
 	private float _remainingTime;
 	private Coroutine _countDown;
 
@@ -25,9 +24,8 @@ public class Timer : IPause
 	public bool InProcess => _countDown != null;
 	public bool IsPaused => _isPaused;
 
-	public void Setup(/*float maxTime, */float currentTime)
+	public void Setup(float currentTime)
 	{
-		//_maxTime = maxTime;
 		_remainingTime = currentTime;
 
 		ValueChanged?.Invoke(_remainingTime);

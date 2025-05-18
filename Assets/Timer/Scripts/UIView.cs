@@ -4,10 +4,10 @@ using UnityEngine;
 public class UIView : MonoBehaviour
 {
 	private const string PauseOnText = "PAUSED";
-	private const string PauseOffText = "Continue";
+	private const string PauseOffText = "...";
 
-	private const string StartText = "START";
-	private const string StopText = "STOPPED";
+	private const string StartText = "IS ON";
+	private const string StopText = "IS OFF";
 
 	[SerializeField] private TMP_Text _startStopButtonText;
 	[SerializeField] private TMP_Text _pauseButtonText;
