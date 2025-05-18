@@ -3,15 +3,12 @@ using System;
 public class Wallet
 {
 	public event Action<CurrencyType, int> Changed;
-
-	//private List<Currency> _currencies;
 		
 	private int _maxAmount;
 
 	public Wallet(int maxAmount)
 	{
 		_maxAmount = maxAmount;
-		//_currencies = new List<Currency>();
 	}
 
 	public void Add(Currency currency, int valueToAdd)
