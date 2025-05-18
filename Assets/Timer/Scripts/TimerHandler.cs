@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class TimerHandler : MonoBehaviour
 {
 	[SerializeField] private TimerSliderView _timerSliderView;
 	[SerializeField] private TimerHeartsView _timerHeartsView;
@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private float _maxTime;
 
-	private Timer _timer;
+	private Timer _timer;	
 
 	private void Awake()
 	{
