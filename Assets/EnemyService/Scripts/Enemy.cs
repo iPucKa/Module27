@@ -1,13 +1,11 @@
 public class Enemy
 {
-	private DestroyCondition _destroyCondition;	
+	private bool _isDead;
 
-	public Enemy(DestroyCondition destroyCondition)
+	public Enemy()
 	{
-		_destroyCondition = destroyCondition;
+		_isDead = false;
 	}
 
-	public DestroyType Type => _destroyCondition.Type;
-	public bool IsDead => _destroyCondition.IsDead;
-	public bool TimeIsOver => _destroyCondition.TimeIsOver;
+	public bool IsDead => _isDead;
 }
