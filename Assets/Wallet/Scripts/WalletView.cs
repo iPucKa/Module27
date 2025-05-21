@@ -20,15 +20,15 @@ public class WalletView : MonoBehaviour
 		_wallet.Changed -= OnCurrencyChanged;
 	}
 
-	private void OnCurrencyChanged(CurrencyType type, int value)
+	private void OnCurrencyChanged(ItemsType type, int value)
 	{
-		if(type == CurrencyType.Coins)		
+		if(type == ItemsType.Coins)		
 			_coinsCountText.text = value.ToString();
 
-		if (type == CurrencyType.Diamonds)
+		if (type == ItemsType.Diamonds)
 			_diamondsCountText.text = value.ToString();
 
-		if (type == CurrencyType.Energie)
+		if (type == ItemsType.Energie)
 			_energieCountText.text = value.ToString();
 	}
 }
