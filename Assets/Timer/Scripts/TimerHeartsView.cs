@@ -10,12 +10,14 @@ public class TimerHeartsView : MonoBehaviour
 	private float _maxTime;
 	private List<GameObject> _hearts;
 
-	public void Initialize(Timer timer, float maxTime)
+	public void Initialize(Timer timer)
 	{
 		_timer = timer;
-		_maxTime = maxTime;
+		_maxTime = _timer.MaxTime;
+
 		_timer.ValueChanged += OnTimerUpdated;
 		_timer.Started += OnTimerStarted;
+		_timer.Stoped += OnTimerStoped;
 
 		_hearts = new List<GameObject>();
 	}
@@ -24,16 +26,12 @@ public class TimerHeartsView : MonoBehaviour
 	{
 		_timer.ValueChanged -= OnTimerUpdated;
 		_timer.Started -= OnTimerStarted;
+		_timer.Stoped -= OnTimerStoped;
 	}
 
-	private void OnTimerStarted(bool isStarted)
-	{
-		if (isStarted)		
-			CreateHearts();		
+	private void OnTimerStarted() => CreateHearts();		
 
-		else		
-			DestroyHearts();		
-	}
+	private void OnTimerStoped() => DestroyHearts();	
 
 	private void OnTimerUpdated(float value)
 	{

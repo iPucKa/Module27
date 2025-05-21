@@ -5,21 +5,26 @@ using UnityEngine;
 public class Timer
 {
 	public event Action<float> ValueChanged;
-	public event Action<bool> Started;
+	public event Action Started;
+	public event Action Stoped;
 	public event Action<bool> Paused;
 
 	private MonoBehaviour _coroutineRunner;
 
 	private float _remainingTime;
 	private Coroutine _countDown;
+	private float _maxTime;
 
 	private bool _isPaused;
 
-	public Timer(MonoBehaviour coroutineRunner)
+	public Timer(MonoBehaviour coroutineRunner, float maxTime)
 	{
 		_coroutineRunner = coroutineRunner;
+		_maxTime = maxTime;
 		_isPaused = false;
 	}
+
+	public float MaxTime => _maxTime;
 
 	public bool InProcess => _countDown != null;
 	public bool IsPaused => _isPaused;
@@ -36,7 +41,7 @@ public class Timer
 		if (_countDown != null)
 			_coroutineRunner.StopCoroutine(_countDown);
 
-		Started?.Invoke(true);
+		Started?.Invoke();
 
 		_countDown = _coroutineRunner.StartCoroutine(Process());
 	}
@@ -46,7 +51,7 @@ public class Timer
 		if (_countDown != null)
 			_coroutineRunner.StopCoroutine(_countDown);
 
-		Started?.Invoke(false);
+		Stoped?.Invoke();
 
 		_countDown = null;
 	}
@@ -73,5 +78,6 @@ public class Timer
 		}
 
 		_countDown = null;
+		Stoped?.Invoke();
 	}
 }

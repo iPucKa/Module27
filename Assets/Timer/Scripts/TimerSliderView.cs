@@ -8,10 +8,11 @@ public class TimerSliderView : MonoBehaviour
 	private Timer _timer;
 	private float _maxTime;
 
-	public void Initialize(Timer timer, float maxTime)
+	public void Initialize(Timer timer)
 	{
 		_timer = timer;
-		_maxTime = maxTime;
+		_maxTime = _timer.MaxTime;
+
 		_timer.ValueChanged += OnTimerUpdated;
 	}	
 

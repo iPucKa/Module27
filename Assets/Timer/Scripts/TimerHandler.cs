@@ -12,10 +12,10 @@ public class TimerHandler : MonoBehaviour
 
 	private void Awake()
 	{
-		_timer = new Timer(this);
+		_timer = new Timer(this, _maxTime);
 
-		_timerSliderView.Initialize(_timer, _maxTime);
-		_timerHeartsView.Initialize(_timer, _maxTime);
+		_timerSliderView.Initialize(_timer);
+		_timerHeartsView.Initialize(_timer);
 		_uIView.Initialize(_timer);
 	}
 

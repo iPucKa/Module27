@@ -18,23 +18,20 @@ public class UIView : MonoBehaviour
 	{
 		_timer = timer;
 		_timer.Started += OnTimerStarted;
+		_timer.Stoped += OnTimerStoped;
 		_timer.Paused += OnTimerPaused;
 	}
 
 	private void OnDestroy()
 	{
 		_timer.Started -= OnTimerStarted;
+		_timer.Stoped -= OnTimerStoped;
 		_timer.Paused -= OnTimerPaused;
 	}
 
-	private void OnTimerStarted(bool isStarted)
-	{
-		if (isStarted)		
-			_startStopButtonText.text = StartText;		
-
-		else		
-			_startStopButtonText.text = StopText;		
-	}
+	private void OnTimerStarted() => _startStopButtonText.text = StartText;	
+	
+	private void OnTimerStoped() => _startStopButtonText.text = StopText;	
 
 	private void OnTimerPaused(bool isPaused)
 	{
