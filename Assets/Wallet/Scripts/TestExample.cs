@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TestExample : MonoBehaviour
@@ -7,41 +8,40 @@ public class TestExample : MonoBehaviour
 	private const int MaxAmount = 100;
 
 	private Wallet _wallet;
-
-	private Item _coin;
-	private Item _diamond;
-	private Item _energie;
+	private Dictionary<ItemsType, int> _items;
 
 	private void Awake()
 	{
-		_wallet = new Wallet(MaxAmount);
-		_walletView.Initialize(_wallet);
+		_items = new Dictionary<ItemsType, int>(){
+			{ItemsType.Coins, 0},
+			{ItemsType.Diamonds, 0},
+			{ItemsType.Energie, 0},
+		};
 
-		_coin = new Item(ItemsType.Coins);
-		_diamond = new Item(ItemsType.Diamonds);
-		_energie = new Item(ItemsType.Energie);
+		_wallet = new Wallet(_items, MaxAmount);
+		_walletView.Initialize(_wallet);
 	}
 
 	private void Update()
 	{
 
 		if (Input.GetKeyDown(KeyCode.Alpha1))
-			_wallet.Add(_coin.Type, 15);
+			_wallet.Add(ItemsType.Coins, 15);
 
 		if (Input.GetKeyDown(KeyCode.Alpha2))
-			_wallet.Remove(_coin.Type, 3);
+			_wallet.Remove(ItemsType.Coins, 3);
 
 		if (Input.GetKeyDown(KeyCode.Alpha3))
-			_wallet.Add(_diamond.Type, 10);
+			_wallet.Add(ItemsType.Diamonds, 10);
 
 		if (Input.GetKeyDown(KeyCode.Alpha4))
-			_wallet.Remove(_diamond.Type, 2);
+			_wallet.Remove(ItemsType.Diamonds, 2);
 
 		if (Input.GetKeyDown(KeyCode.Alpha5))
-			_wallet.Add(_energie.Type, 5);
+			_wallet.Add(ItemsType.Energie, 5);
 
 		if (Input.GetKeyDown(KeyCode.Alpha6))
-			_wallet.Remove(_energie.Type, 1);
+			_wallet.Remove(ItemsType.Energie, 1);
 	}
 
 	public void ShowWallet() => _walletView.gameObject.SetActive(true);

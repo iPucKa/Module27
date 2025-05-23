@@ -8,14 +8,10 @@ public class Wallet
 	private Dictionary<ItemsType, int> _items;
 	private int _maxAmount;
 
-	public Wallet(int maxAmount)
+	public Wallet(Dictionary<ItemsType, int> items, int maxAmount)
 	{
-		_maxAmount = maxAmount;
-		_items = new Dictionary<ItemsType, int>();
-
-		_items.Add(ItemsType.Coins, 0);
-		_items.Add(ItemsType.Diamonds, 0);
-		_items.Add(ItemsType.Energie, 0);
+		_maxAmount = maxAmount;		
+		_items = items;		
 	}
 
 	public void Add(ItemsType type, int valueToAdd)
